@@ -43,7 +43,7 @@ async def post_result_cadastral_num(query: QueryModel, answer_server: bool):
 async def get_requests_history(cadastral_num: str | None = None):
     
     # Эмуляция работы сервера
-    # await external_server()
+    await external_server()
 
     result = await get_data(cadastral_num)
     print(result)
