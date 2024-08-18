@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from find_estate.router import router as find_estate_router
 
-# from admin.admin_panel import router as admin_router
 from fastadmin import fastapi_app as admin_app
 
 from db.db_helper import db_helper
@@ -34,14 +33,10 @@ class UserModelAdmin(SqlAlchemyModelAdmin):
             return obj.id
 
 
-
 @register(Estate, sqlalchemy_sessionmaker=db_helper.session_maker)
 class EstateModelAdmin(SqlAlchemyModelAdmin):
     list_display = ("id", "cadastral_num", "latitude", "longitude", "server_answer")
     list_display_links = ("cadastral_num")
-
-
-
 
 
 async def init_db():
@@ -68,13 +63,9 @@ async def lifespan(app: FastAPI):
     yield
 
 
-
 app = FastAPI(lifespan=lifespan)
 
-
 app.include_router(find_estate_router)
-# app.include_router(admin_router)
-
 app.mount("/admin", admin_app)
 
 app.add_middleware(
