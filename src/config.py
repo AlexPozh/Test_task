@@ -16,4 +16,4 @@ class DatabaseConfig:
 
     @property
     def dsn(self):
-        return f"postgresql+asyncpg://{self.__user_db}:{self.__password_db}@{self.__host_db}:{self.__port_db}/{self.__name_db}"
+        return f"postgresql+asyncpg://{self.__user_db}:{self.__password_db}@postgres_db:{self.__port_db}/{self.__name_db}"
